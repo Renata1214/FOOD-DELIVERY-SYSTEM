@@ -1,7 +1,7 @@
 #include <iostream> 
 #include <cmath>
 #include <string>
-#include <vectors>
+#include <vector>
 #include <cstdlib>
 #include <ctime>
 
@@ -16,13 +16,62 @@ class IdData;
 class Receipt;
 
 //Random Function configuration
-srand(time(NULL));
 int rand_int(int a, int b)
 {
 return rand()%(b-a+1) + a;
 }
 
-#Class Definitions
+float rand_float(float a, float b)
+{
+return ((float)rand()/RAND_MAX)*(b-a) + a;
+}
+
+//Class Definitions
+
+//Delivery details
+class DeliveryPeople{
+
+private:
+float xcoordinate;
+float ycoordinate;
+int id;
+bool availability;
+static int IDnumber;
+
+
+public:
+
+DeliveryPeople (){
+    xcoordinate= rand_float(0,100);
+    ycoordinate= rand_float(0,100);
+    availability= rand_int(0,1);
+    id=IDnumber;
+    IDnumber ++;
+}
+
+//setter and getter functions
+void setPosition(float x, float y){
+    xcoordinate=x;
+    ycoordinate=y;}
+
+void setavailability(bool value){
+    availability=value;
+}
+
+float getxpos (){
+    return xcoordinate;
+}
+
+float getypos (){
+    return ycoordinate;
+}
+
+bool getavailability (){
+    return availability;
+}
+
+};
+int DeliveryPeople:: IDnumber=0;
 
 class Business {
 
@@ -42,14 +91,14 @@ Business (string **ArrMenuPrices, int rows, int columns, int deliveryNum){
     availableDelivery=false;
     confirmationOrd=false;
     numberDrivers=deliveryNum;
-    for (int i=0, i<rows; i++){
-        MenuOptions[i]= ArrMenuPrices[i][0];
-        PricesMenu[i]=ArrMenuPrices[i][1];
+    for (int i=0; i<rows; i++){
+        MenuOptions.push_back(ArrMenuPrices[i][0]);
+        PricesMenu. push_back(ArrMenuPrices[i][1]);
     }
 
     for (int j=0; j<deliveryNum; j++){
-        DeliveryPeople newObject();
-        DeliveryWorkers[j]= newObject;
+        DeliveryPeople newObject;
+        DeliveryWorkers.push_back(newObject);
     }
 
 }
@@ -60,7 +109,7 @@ Business (string **ArrMenuPrices, int rows, int columns, int deliveryNum){
 bool DriverAvailability (){
 
 
-
+return true;
 }
 
 
@@ -69,7 +118,7 @@ bool DriverAvailability (){
 
 };
 
-class Customer: public idData {
+class Customer{
 
     private:
 
@@ -86,52 +135,6 @@ class Customer: public idData {
 
 };
 
-
-//Delivery details
-class DeliveryPeople : public Business{
-
-private:
-float xcoordinate;
-float ycoordinate;
-int id;
-bool availability;
-static int IDnumber;
-
-
-public:
-
-DeliveryPeople (){
-    xcoordinate= rand ();
-    ycoordinate= rand ();
-    availability= rand_int(0,1);
-    id=IDnumber;
-    IDnumber ++;
-}
-
-//setter and getter functions
-void setPosition(float x, float y){
-    xcoordinate=x;
-    ycoordinate=y;}
-
-void setavailability(bool value){
-    availability=value;
-}
-
-float getxpos (){
-    return xpos;
-}
-
-float getypos (){
-    return ypos;
-}
-
-bool getavailability (){
-    return availability;
-}
-
-};
-int DeliveryPeople:: IDnumber=0;
-
 //ID information of the customer
 class IdData {
 
@@ -144,15 +147,15 @@ static int UniqueNumber;
 
 public:
 //Constructor
-idData(){
+IdData ( ) {
     xCusPos= 0;
     yCusPos = 0;
-    nameCustomer= 0;
+    nameCustomer= "-";
     personalID=UniqueNumber;
-    UniqueNumber++;
+   UniqueNumber++;
 }
 
-idData (float coordinatex, float coordinatey, string name){
+IdData (float coordinatex, float coordinatey, string name){
     xCusPos= coordinatex;
     yCusPos = coordinatey;
     nameCustomer= name;
@@ -165,7 +168,7 @@ idData (float coordinatex, float coordinatey, string name){
 
 };
 //Definition of Static Variable
-int IDdata:: UniqueNumber=0;
+int IdData:: UniqueNumber=0;
 
 
 //Receipt of the order
@@ -189,3 +192,8 @@ class Receipt {
 
 
 };
+
+int main (){
+
+    return 0;
+}
