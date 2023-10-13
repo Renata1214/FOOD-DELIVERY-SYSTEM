@@ -38,7 +38,7 @@ int id;
 bool availability;
 static int IDnumber;
 
-
+friend class Business;
 public:
 
 DeliveryPeople (){
@@ -49,30 +49,23 @@ DeliveryPeople (){
     IDnumber ++;
 }
 
-//setter and getter functions
+//setter functions
 void setPosition(float x, float y){
     xcoordinate=x;
     ycoordinate=y;}
 
-void setavailability(bool value){
-    availability=value;
-}
+void setavailability(bool value){ availability=value;}
 
-float getxpos (){
-    return xcoordinate;
-}
+float getxpos (){return xcoordinate;}
 
-float getypos (){
-    return ycoordinate;
-}
+float getypos (){return ycoordinate;}
 
-bool getavailability (){
-    return availability;
-}
+bool getavailability (){return availability;}
 
 };
 int DeliveryPeople:: IDnumber=0;
 
+//Class Business
 class Business {
 
 private:
@@ -83,6 +76,7 @@ private:
     bool confirmationOrd;
     int numberDrivers;
 
+//check if it should be friend or derived class
     friend class Receipt;
 
 public:
@@ -96,22 +90,39 @@ Business (string **ArrMenuPrices, int rows, int columns, int deliveryNum){
         PricesMenu. push_back(ArrMenuPrices[i][1]);
     }
 
-    for (int j=0; j<deliveryNum; j++){
+    for (int j=0; j<numberDrivers; j++){
         DeliveryPeople newObject;
         DeliveryWorkers.push_back(newObject);
     }
-
 }
 
 //Setter and Getter Functions
 
 //Function to determine availability of Drivers
-bool DriverAvailability (){
-
-
-return true;
+//Function Overloading
+int *DriverAvailable (int a){
+//Stablish a try and catch in case the -1 is passed.
+//Create a dynamic array that can save the number of drivers that are available. There will be max n number of drivers available. But they can be less, that is why you will 
+//use dynamic memory array. 
+int *indexPtrAvailable=nullprt;
+indexPtrAvailable= new int[numberDrivers];
+    for (int i=0; i<numberDrivers; i++){
+       if(DeliveryPeople[i].getavailability()==true){
+        indexPtrAvailable[i]=i;
+       }
+    }
+return indexPtrAvailable;
 }
 
+bool DriverAvailable (bool a){
+    bool available=false;
+    for (int i=0; i<numberDrivers; i++){
+       if(DeliveryPeople[i].getavailability()==true){
+        available = DeliveryPeople[i].getavailability();
+       }
+    }
+return available;
+}
 
 //Function to determine whether order is accepted or not
 
@@ -188,12 +199,12 @@ class Receipt {
     //Setter and Getter Functions
 
 
-
-
-
 };
 
 int main (){
 
+
+
+    delete [] //YOU NEED TO ADD THE DYNAMICALLY MEMORY ARRAY THAT YOU CREATE WITH DRIVERAVAILABLE FUNCTION. You must assig the return value to a variable so that you are able to delete it.
     return 0;
 }
