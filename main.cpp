@@ -124,8 +124,11 @@ bool DriverAvailable (bool a){
 return available;
 }
 
-//Function to determine whether order is accepted or not
+//Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING
+bool OrderConfirmation (){
+    
 
+}
 
 };
 
