@@ -67,12 +67,17 @@ int getID () {return id;}
 };
 int DeliveryPeople:: IDnumber=0;
 
+template <typename T>
 class Customer: public IdData{
 
     private:
-    string order;
+    T <vector> order;
+    T item;
+    int <vector> quantityVec; 
+    int quantity;
+   
 
-    
+    friend class Business;
     friend class Receipt;
 
     public:
@@ -85,15 +90,52 @@ class Customer: public IdData{
 
     //Order Food
     void OrderFood (){
+        int errorselection;
 
+        cout << "From the options shown in the Menu above, which one would you like to order?
+        Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
+        cin >> item;
+        cout << "How many would you like to order"
+        cin>> quantity;
+        if (quantity<=0){
+            cout<<"That is an invalid order, please try ordering again. Select 1 to return to item selection, and 0 to end the program"<< endl;
+            cin<<errorselection;
+                    if(errorselection==0){
+                        exit(0);
+                    }
+        }
+        else {
+            order.push_back(item);
+            quantityVec.push_back(quantity);
+            cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
+            cin>> ExtraproductDecision
+            do{
+                if (ExtraproductDecision==1){
+                    cout <<"Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
+                    cin >> item;
+                    cout << "How many would you like to order"
+                    cin>> quantity;
+                        if (quantity<=0){
+                            cout<<"That is an invalid order, please try ordering again. Select 1 to return to item selection, and 0 to end the program"<< endl;
+                            cin<<errorselection;
+                                if(errorselection==0){
+                                    exit(0);
+                                }
+                        }
+                order.push_back(item);
+                quantityVec.push_back(quantity);
+                cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
+                cin>> ExtraproductDecision
+                    }
+        }while (ExtraproductDecision==1)}
 
-
-
+        cout<< "Your Order has been recorded!!!" << endl;
     }
 
     //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. 
     bool confirmationOrd (){
 
+            cout << 
 
     }
 
@@ -152,7 +194,7 @@ int IdData:: UniqueNumber=0;
 
 
 //Class Business
-class Business: public Customer {
+class Business: public Customer{
 
 private:
     vector <string> MenuOptions;
@@ -202,7 +244,7 @@ vector <int> DriverAvailable (int a){
 vector <int> indexVecAvailable;
     for (int i=0; i<numberDrivers; i++){
        if(DeliveryPeople[i].getavailability()==true){
-        indexVecAvailable.push_back()=i;
+        indexVecAvailable.push_back(i);
        }
     }
 return indexVecAvailable;
@@ -294,7 +336,7 @@ class Receipt {
 
     public:
     Receipt (Business ex1){
-        ptrbusiness=
+        ptrbusiness= &ex1;
     }
 
     //Setter and Getter Functions
@@ -303,7 +345,7 @@ class Receipt {
 
     void calculateCost const (){ 
 
-
+            ptrbusiness->
 
     }
 
