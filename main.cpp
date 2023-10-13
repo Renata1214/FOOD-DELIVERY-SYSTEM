@@ -100,25 +100,24 @@ Business (string **ArrMenuPrices, int rows, int columns, int deliveryNum){
 
 //Function to determine availability of Drivers
 //Function Overloading
-int *DriverAvailable (int a){
+vector <int> DriverAvailable (int a){
 //Stablish a try and catch in case the -1 is passed.
 //Create a dynamic array that can save the number of drivers that are available. There will be max n number of drivers available. But they can be less, that is why you will 
-//use dynamic memory array. 
-int *indexPtrAvailable=nullprt;
-indexPtrAvailable= new int[numberDrivers];
+//use dynamic memory array. Did not use dynamic because vector would be more efficient as it creates the mmeory automatically
+vector <int> indexVecAvailable;
     for (int i=0; i<numberDrivers; i++){
        if(DeliveryPeople[i].getavailability()==true){
-        indexPtrAvailable[i]=i;
+        indexVecAvailable.push_back()=i;
        }
     }
-return indexPtrAvailable;
+return indexVecAvailable;
 }
 
 bool DriverAvailable (bool a){
     bool available=false;
     for (int i=0; i<numberDrivers; i++){
        if(DeliveryPeople[i].getavailability()==true){
-        available = DeliveryPeople[i].getavailability();
+        available = true;
        }
     }
 return available;
@@ -126,13 +125,88 @@ return available;
 
 //Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING
 bool OrderConfirmation (){
+    bool variableresult=false;
+    if (DriverAvailable(true)==true){
+        variableresult=true;
+    }
+return variableresult;
+}
+
+
+//You may need to do function overloading to also obtain a function that gv=ives you the specific distance between a delivery person and a customer to later be able to calculate
+//the time that it will take the driver to arrive to the customer's location 
+//Assign Driver Function
+DeliveryPeople AssignDriver (Customer *Example){
+    //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
+    float xdriver;
+    float ydriver;
+    float xcustomer;
+    float ycustomer;
+    float intermediate;
+    float distance;
+    float minDistance=10000000000000;
+    int indexAssignedDriver=-1; // careful with possible compilation problems
     
+    xcustomer=Example->getCusPosX();
+    ycustomer=Example->getCusPosY();
+
+    if (DriverAvailable(true)==true){
+        int sizevector= DriverAvailable(1).size();
+//FIND THE DISTANCE BETWEEN THE CUSTOMER AND EACH OF THE ELIVERY WORKERS, AND SAVE THE ONE THAT IS THE SMALLEST ONE. ASSIGN THAT DRIVER TO THE CUSTOMER. 
+       
+       for (int i=0; i<sizevector; i++){
+        xdriver=DeliveryWorkers[DriverAvailable(1)[i]].getxpos();
+        ydriver=DeliveryWorkers[DriverAvailable(1)[i]]. getypos();
+
+        intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
+        distance=sqrt(intermediate);
+
+        if (distance<minDistance){
+            indexAssignedDriver=DriverAvailable(1)[i];}
+       }
+    }
+
+    return DeliveryWorkers[indexAssignedDriver];
+
+}
+
+float AssignDriver (Customer *Example, int index){
+    //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
+    float xdriver;
+    float ydriver;
+    float xcustomer;
+    float ycustomer;
+    float intermediate;
+    float distance;
+    float minDistance=10000000000000;
+    int indexAssignedDriver=-1; // careful with possible compilation problems
+    
+    xcustomer=Example->getCusPosX();
+    ycustomer=Example->getCusPosY();
+
+    if (DriverAvailable(true)==true){
+        int sizevector= DriverAvailable(1).size();
+//FIND THE DISTANCE BETWEEN THE CUSTOMER AND EACH OF THE ELIVERY WORKERS, AND SAVE THE ONE THAT IS THE SMALLEST ONE. ASSIGN THAT DRIVER TO THE CUSTOMER. 
+       
+       for (int i=0; i<sizevector; i++){
+        xdriver=DeliveryWorkers[index].getxpos();
+        ydriver=DeliveryWorkers[DriverAvailable(1)[i]]. getypos();
+
+        intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
+        distance=sqrt(intermediate);
+
+        if (distance<minDistance){
+            minDistance=distance;}
+       }
+    }
+
+    return minDistance;
 
 }
 
 };
 
-class Customer{
+class Customer: public IdData{
 
     private:
 
@@ -177,7 +251,16 @@ IdData (float coordinatex, float coordinatey, string name){
     UniqueNumber++;
 }
 
-//Getter and Setter Functions
+//Getter Functions
+float getCusPosX (){return xCusPos;}
+float getCusPosY (){return yCusPos;}
+string getName () {return nameCustomer;}
+int getIDCus () {return personalID;}
+
+//Setter Functions
+void setCusPosX (float x){ xCusPos=x;}
+void setCusPosY (float y){ yCusPos=y;}
+void setName (string name) {nameCustomer=name;}
 
 
 };
