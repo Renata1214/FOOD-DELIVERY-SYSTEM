@@ -62,11 +62,97 @@ float getypos (){return ycoordinate;}
 
 bool getavailability (){return availability;}
 
+int getID () {return id;}
+
 };
 int DeliveryPeople:: IDnumber=0;
 
+class Customer: public IdData{
+
+    private:
+    string order;
+
+    
+    friend class Receipt;
+
+    public:
+
+    //Constructor
+    Customer (){
+
+    }
+
+
+    //Order Food
+    void OrderFood (){
+
+
+
+
+    }
+
+    //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. 
+    bool confirmationOrd (){
+
+
+    }
+
+
+    //Setter and Getter functions
+
+    //Use template functions
+
+
+
+
+};
+
+class IdData {
+
+private:
+float xCusPos;
+float yCusPos;
+string nameCustomer;
+int personalID;
+static int UniqueNumber;
+
+public:
+//Constructor
+IdData ( ) {
+    xCusPos= 0;
+    yCusPos = 0;
+    nameCustomer= "-";
+    personalID=UniqueNumber;
+   UniqueNumber++;
+}
+
+IdData (float coordinatex, float coordinatey, string name){
+    xCusPos= coordinatex;
+    yCusPos = coordinatey;
+    nameCustomer= name;
+    personalID=UniqueNumber;
+    UniqueNumber++;
+}
+
+//Getter Functions
+float getCusPosX (){return xCusPos;}
+float getCusPosY (){return yCusPos;}
+string getName () {return nameCustomer;}
+int getIDCus () {return personalID;}
+
+//Setter Functions
+void setCusPosX (float x){ xCusPos=x;}
+void setCusPosY (float y){ yCusPos=y;}
+void setName (string name) {nameCustomer=name;}
+
+
+};
+//Definition of Static Variable
+int IdData:: UniqueNumber=0;
+
+
 //Class Business
-class Business {
+class Business: public Customer {
 
 private:
     vector <string> MenuOptions;
@@ -76,16 +162,18 @@ private:
     bool confirmationOrd;
     int numberDrivers;
     int AssignedDIndex;
+    float deliveryPrice;
 
 //check if it should be friend or derived class
     friend class Receipt;
 
 public:
-Business (string **ArrMenu, int rows, int columns, int deliveryNum){
+Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee){
 
     availableDelivery=false;
     confirmationOrd=false;
     numberDrivers=deliveryNum;
+    deliveryPrice=deliveryfee;
     AssignedDIndex=-1;
     for (int i=0; i<rows; i++){
         MenuOptions.push_back(ArrMenu[i][0]);
@@ -199,85 +287,32 @@ float AssignedDriverInfo (Customer *Example, int index){
 
 };
 
-class Customer: public IdData{
-
-    private:
-
-    
-    friend class Receipt;
-
-    public:
-
-
-
-    //Setter and Getter functions
-
-
-
-};
-
-//ID information of the customer
-class IdData {
-
-private:
-float xCusPos;
-float yCusPos;
-string nameCustomer;
-int personalID;
-static int UniqueNumber;
-
-public:
-//Constructor
-IdData ( ) {
-    xCusPos= 0;
-    yCusPos = 0;
-    nameCustomer= "-";
-    personalID=UniqueNumber;
-   UniqueNumber++;
-}
-
-IdData (float coordinatex, float coordinatey, string name){
-    xCusPos= coordinatex;
-    yCusPos = coordinatey;
-    nameCustomer= name;
-    personalID=UniqueNumber;
-    UniqueNumber++;
-}
-
-//Getter Functions
-float getCusPosX (){return xCusPos;}
-float getCusPosY (){return yCusPos;}
-string getName () {return nameCustomer;}
-int getIDCus () {return personalID;}
-
-//Setter Functions
-void setCusPosX (float x){ xCusPos=x;}
-void setCusPosY (float y){ yCusPos=y;}
-void setName (string name) {nameCustomer=name;}
-
-
-};
-//Definition of Static Variable
-int IdData:: UniqueNumber=0;
-
-
 //Receipt of the order
 class Receipt {
     private:
-    float totalCost;
-    float deliveryFee;
-    
+    Business *ptrbusiness;
 
     public:
-    Receipt (){
-
-        totalCost=0;
-        deliveryFee=0;
+    Receipt (Business ex1){
+        ptrbusiness=
     }
 
     //Setter and Getter Functions
 
+    //Print the receipt
 
+    void calculateCost const (){ 
+
+
+
+    }
+
+    void printReceipt const (){
+
+
+    }
+
+    
 };
 
 int main (){
