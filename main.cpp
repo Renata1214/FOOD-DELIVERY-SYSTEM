@@ -211,6 +211,8 @@ string nameCustomer;
 int personalID;
 static int UniqueNumber;
 
+friend class receipt;
+
 public:
 //Constructor
 IdData ( ) {
@@ -391,20 +393,19 @@ float AssignedDriverInfo (Customer *Example, int index){
 //Receipt of the order
 class Receipt {
     private:
-    Business *ptrbusiness;
+    
 
     public:
-    Receipt (Business ex1){
-        ptrbusiness= &ex1;
+    Receipt (){
     }
 
     //Setter and Getter Functions
 
     //Print the receipt
 
-    void calculateCost const (){ 
+    void calculateCost const (Customer cus1, ){ 
 
-            ptrbusiness->
+            
 
     }
 
