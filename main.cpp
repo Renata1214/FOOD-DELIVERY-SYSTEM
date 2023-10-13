@@ -75,28 +75,35 @@ private:
     bool availableDelivery;
     bool confirmationOrd;
     int numberDrivers;
+    int AssignedDIndex;
 
 //check if it should be friend or derived class
     friend class Receipt;
 
 public:
-Business (string **ArrMenuPrices, int rows, int columns, int deliveryNum){
+Business (string **ArrMenu, int rows, int columns, int deliveryNum){
 
     availableDelivery=false;
     confirmationOrd=false;
     numberDrivers=deliveryNum;
+    AssignedDIndex=-1;
     for (int i=0; i<rows; i++){
-        MenuOptions.push_back(ArrMenuPrices[i][0]);
-        PricesMenu. push_back(ArrMenuPrices[i][1]);
+        MenuOptions.push_back(ArrMenu[i][0]);
+        PricesMenu. push_back(ArrMenu[i][1]);
     }
 
     for (int j=0; j<numberDrivers; j++){
         DeliveryPeople newObject;
         DeliveryWorkers.push_back(newObject);
     }
+
 }
 
 //Setter and Getter Functions
+
+
+
+
 
 //Function to determine availability of Drivers
 //Function Overloading
@@ -136,7 +143,7 @@ return variableresult;
 //You may need to do function overloading to also obtain a function that gv=ives you the specific distance between a delivery person and a customer to later be able to calculate
 //the time that it will take the driver to arrive to the customer's location 
 //Assign Driver Function
-DeliveryPeople AssignDriver (Customer *Example){
+DeliveryPeople AssignedDriverInfo (Customer *Example){
     //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
     float xdriver;
     float ydriver;
@@ -145,7 +152,7 @@ DeliveryPeople AssignDriver (Customer *Example){
     float intermediate;
     float distance;
     float minDistance=10000000000000;
-    int indexAssignedDriver=-1; // careful with possible compilation problems
+     // careful with possible compilation problems due to -1 as initial index of the assignedDindex
     
     xcustomer=Example->getCusPosX();
     ycustomer=Example->getCusPosY();
@@ -162,15 +169,15 @@ DeliveryPeople AssignDriver (Customer *Example){
         distance=sqrt(intermediate);
 
         if (distance<minDistance){
-            indexAssignedDriver=DriverAvailable(1)[i];}
+            assignedDindex=DriverAvailable(1)[i];}
        }
     }
 
-    return DeliveryWorkers[indexAssignedDriver];
+    return DeliveryWorkers[assignedDindex];
 
 }
 
-float AssignDriver (Customer *Example, int index){
+float AssignedDriverInfo (Customer *Example, int index){
     //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
     float xdriver;
     float ydriver;
@@ -178,30 +185,16 @@ float AssignDriver (Customer *Example, int index){
     float ycustomer;
     float intermediate;
     float distance;
-    float minDistance=10000000000000;
-    int indexAssignedDriver=-1; // careful with possible compilation problems
+    //careful comilation problems with a wrong index being passed
     
     xcustomer=Example->getCusPosX();
     ycustomer=Example->getCusPosY();
-
-    if (DriverAvailable(true)==true){
-        int sizevector= DriverAvailable(1).size();
-//FIND THE DISTANCE BETWEEN THE CUSTOMER AND EACH OF THE ELIVERY WORKERS, AND SAVE THE ONE THAT IS THE SMALLEST ONE. ASSIGN THAT DRIVER TO THE CUSTOMER. 
-       
-       for (int i=0; i<sizevector; i++){
-        xdriver=DeliveryWorkers[index].getxpos();
-        ydriver=DeliveryWorkers[DriverAvailable(1)[i]]. getypos();
-
+    xdriver=DeliveryWorkers[index].getxpos();
+    ydriver=DeliveryWorkers[index]. getypos();
+        //calculate distance
         intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
         distance=sqrt(intermediate);
-
-        if (distance<minDistance){
-            minDistance=distance;}
-       }
-    }
-
-    return minDistance;
-
+    return distance;
 }
 
 };
