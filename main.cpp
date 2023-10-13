@@ -76,6 +76,7 @@ class Customer: public IdData{
     T item;
     vector <T> quantityVec; 
     int quantity;
+    bool confirm;
    
 
     friend class Business;
@@ -85,14 +86,16 @@ class Customer: public IdData{
 
     //Constructor
     Customer (){
-
+        confirm=false;
+        quantity=0;
     }
 
 
     //Order Food
     void OrderFood (){
-        int errorselection;
+        int errorselection=-1;
 
+    do{
         cout << "From the options shown in the Menu above, which one would you like to order?
         Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
         cin >> item;
@@ -104,60 +107,98 @@ class Customer: public IdData{
                     if(errorselection==0){
                         exit(0);
                     }
+            while(errorselection!=1||errorselection!=0){
+                cout<<"Invalid selection, please try again. Select 1 to return to item selection and 0 to en program"<< endl;
+                cin >> errorselection;
+                if(errorselection==0){
+                        exit(0);
+                    }
+            }
+                
         }
-        else {
+        else if(errorselection!=1){
             order.push_back(item);
             quantityVec.push_back(quantity);
             cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
             cin>> ExtraproductDecision
             do{
-                if (ExtraproductDecision==1){
+                if (ExtraproductDecision!=0){
                     cout <<"Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
                     cin >> item;
                     cout << "How many would you like to order"
                     cin>> quantity;
                         if (quantity<=0){
-                            cout<<"That is an invalid order, please try ordering again. Select 1 to return to item selection, and 0 to end the program"<< endl;
+                            cout<<"That is an invalid order, please try ordering again. Select 1 to return to inital item selection (previous ordered items will need to be re-ordered), and 0 to end the program"<< endl;
                             cin<<errorselection;
                                 if(errorselection==0){
                                     exit(0);
                                 }
+                                while(errorselection!=1||errorselection!=0){
+                                    cout<<"Invalid selection, please try again. Select 1 to return to item selection and 0 to en program"<< endl;
+                                    cin >> errorselection;
+                                        if(errorselection==0){
+                                            exit(0);
+                                            }
+                                }
                         }
-                order.push_back(item);
-                quantityVec.push_back(quantity);
-                cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
-                cin>> ExtraproductDecision
+                        else if(errorselection!=1){
+                            order.push_back(item);
+                            quantityVec.push_back(quantity);
+                            cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
+                            cin>> ExtraproductDecision
+                }
                     }
-        }while (ExtraproductDecision==1)}
+        }while (ExtraproductDecision!=0&&errorselection!=1);
 
-        cout<< "Your Order has been recorded!!!" << endl;
+        if(error selection!=1){
+        cout<< "Your Order has been recorded!!!" << endl;}
+        
+        }
+
+    }while (errorselection==1)
     }
 
-    //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. 
-    bool confirmationOrd (Business *b1){
+    //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. virtual
+    virtual bool confirmationOrd (Business *b1){
 
             cout << "The recorded order is shown below: " << endl;
 
-        if(typeid(order[0])==typeid(int))
+        if(typeid(order[0])==typeid(int)){
+            for (int j=0; j<order.size();j++){
             for (int i=0; i<b1->ItemIndex.size(); i++){
 
-                if(order[i]==b1->ItemIndex[i]){
-                cout 
+                if(order[j]==b1->ItemIndex[i]){
+                cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i] << endl;
+                break;
                 }
 
-            }
+            }}
+        }
+        else{
+            for (int j=0; j<order.size();j++){
+            for (int i=0; i<b1->MenuOptions.size(); i++){
+                if(order[j]==b1->MenuOptions[i]){
+                cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i]] << endl;
+                break;
+                }
 
+            }}
 
+        }
+
+        cout << "If the order is correct, please select 1, otherwise select 0"<< endl;
+        cin << confirm;
+
+        return confirm;
 
     }
 
 
-    //Setter and Getter functions
-
-    //Use template functions
-
-
-
+    //Getter functions
+    vector <T> getOrder (return order;)
+    vector <T> getQuantity (return quantityVec;)
+    bool getCusConfirmation (return confirm;)
+    
 
 };
 
@@ -221,7 +262,7 @@ private:
 
 //check if it should be friend or derived class
     friend class Receipt;
-    friend bool confirmationOrd (Business *b1);
+    friend virtual bool confirmationOrd (Business *b1);
 
 public:
 Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee){
