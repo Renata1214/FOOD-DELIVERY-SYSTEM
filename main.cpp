@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <typeinfo>
 
 
 using namespace std;
@@ -71,9 +72,9 @@ template <typename T>
 class Customer: public IdData{
 
     private:
-    T <vector> order;
+    vector <T> order;
     T item;
-    int <vector> quantityVec; 
+    vector <T> quantityVec; 
     int quantity;
    
 
@@ -133,9 +134,18 @@ class Customer: public IdData{
     }
 
     //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. 
-    bool confirmationOrd (){
+    bool confirmationOrd (Business *b1){
 
-            cout << 
+            cout << "The recorded order is shown below: " << endl;
+
+        if(typeid(order[0])==typeid(int))
+            for (int i=0; i<b1->ItemIndex.size(); i++){
+                
+                if()
+
+            }
+
+
 
     }
 
@@ -199,6 +209,7 @@ class Business: public Customer{
 private:
     vector <string> MenuOptions;
     vector <string> PricesMenu;
+    vector <int> ItemIndex;
     vector <DeliveryPeople> DeliveryWorkers;
     bool availableDelivery;
     bool confirmationOrd;
@@ -208,6 +219,7 @@ private:
 
 //check if it should be friend or derived class
     friend class Receipt;
+    friend bool confirmationOrd (Business *b1);
 
 public:
 Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee){
@@ -218,6 +230,7 @@ Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliver
     deliveryPrice=deliveryfee;
     AssignedDIndex=-1;
     for (int i=0; i<rows; i++){
+        ItemIndex. push_back(i);
         MenuOptions.push_back(ArrMenu[i][0]);
         PricesMenu. push_back(ArrMenu[i][1]);
     }
@@ -231,6 +244,9 @@ Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliver
 
 //Setter and Getter Functions
 
+vector <int> getItemIndex (){ return ItemIndex;}
+vector <string> getMenuOptions(){return MenuOptions;}
+vector <string> getPricesMenu (){return PricesMenu;}
 
 
 
