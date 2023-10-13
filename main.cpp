@@ -140,8 +140,10 @@ class Customer: public IdData{
 
         if(typeid(order[0])==typeid(int))
             for (int i=0; i<b1->ItemIndex.size(); i++){
-                
-                if()
+
+                if(order[i]==b1->ItemIndex[i]){
+                cout 
+                }
 
             }
 
