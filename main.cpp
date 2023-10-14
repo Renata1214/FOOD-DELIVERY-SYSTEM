@@ -68,140 +68,6 @@ int getID () {return id;}
 };
 int DeliveryPeople:: IDnumber=0;
 
-template <typename T>
-class Customer: public IdData{
-
-    private:
-    vector <T> order;
-    T item;
-    vector <T> quantityVec; 
-    int quantity;
-    bool confirm;
-   
-
-    friend class Business;
-    friend class Receipt;
-
-    public:
-
-    //Constructor
-    Customer (){
-        confirm=false;
-        quantity=0;
-    }
-
-
-    //Order Food
-    void OrderFood (){
-        int errorselection=-1;
-
-    do{
-        cout << "From the options shown in the Menu above, which one would you like to order?
-        Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
-        cin >> item;
-        cout << "How many would you like to order"
-        cin>> quantity;
-        if (quantity<=0){
-            cout<<"That is an invalid order, please try ordering again. Select 1 to return to item selection, and 0 to end the program"<< endl;
-            cin<<errorselection;
-                    if(errorselection==0){
-                        exit(0);
-                    }
-            while(errorselection!=1||errorselection!=0){
-                cout<<"Invalid selection, please try again. Select 1 to return to item selection and 0 to en program"<< endl;
-                cin >> errorselection;
-                if(errorselection==0){
-                        exit(0);
-                    }
-            }
-                
-        }
-        else if(errorselection!=1){
-            order.push_back(item);
-            quantityVec.push_back(quantity);
-            cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
-            cin>> ExtraproductDecision
-            do{
-                if (ExtraproductDecision!=0){
-                    cout <<"Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
-                    cin >> item;
-                    cout << "How many would you like to order"
-                    cin>> quantity;
-                        if (quantity<=0){
-                            cout<<"That is an invalid order, please try ordering again. Select 1 to return to inital item selection (previous ordered items will need to be re-ordered), and 0 to end the program"<< endl;
-                            cin<<errorselection;
-                                if(errorselection==0){
-                                    exit(0);
-                                }
-                                while(errorselection!=1||errorselection!=0){
-                                    cout<<"Invalid selection, please try again. Select 1 to return to item selection and 0 to en program"<< endl;
-                                    cin >> errorselection;
-                                        if(errorselection==0){
-                                            exit(0);
-                                            }
-                                }
-                        }
-                        else if(errorselection!=1){
-                            order.push_back(item);
-                            quantityVec.push_back(quantity);
-                            cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
-                            cin>> ExtraproductDecision
-                }
-                    }
-        }while (ExtraproductDecision!=0&&errorselection!=1);
-
-        if(error selection!=1){
-        cout<< "Your Order has been recorded!!!" << endl;}
-        
-        }
-
-    }while (errorselection==1)
-    }
-
-    //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. virtual
-    virtual bool confirmationOrd (Business *b1){
-
-            cout << "The recorded order is shown below: " << endl;
-
-        if(typeid(order[0])==typeid(int)){
-            for (int j=0; j<order.size();j++){
-            for (int i=0; i<b1->ItemIndex.size(); i++){
-
-                if(order[j]==b1->ItemIndex[i]){
-                cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i] << endl;
-                break;
-                }
-
-            }}
-        }
-        else{
-            for (int j=0; j<order.size();j++){
-            for (int i=0; i<b1->MenuOptions.size(); i++){
-                if(order[j]==b1->MenuOptions[i]){
-                cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i]] << endl;
-                break;
-                }
-
-            }}
-
-        }
-
-        cout << "If the order is correct, please select 1, otherwise select 0"<< endl;
-        cin << confirm;
-
-        return confirm;
-
-    }
-
-
-    //Getter functions
-    vector <T> getOrder (return order;)
-    vector <T> getQuantity (return quantityVec;)
-    bool getCusConfirmation (return confirm;)
-    
-
-};
-
 class IdData {
 
 private:
@@ -242,185 +108,357 @@ void setCusPosX (float x){ xCusPos=x;}
 void setCusPosY (float y){ yCusPos=y;}
 void setName (string name) {nameCustomer=name;}
 
+//print all data
+void PrintIDdata (){
+    cout << "Name of the Customer: " << nameCustomer << endl;
+    cout << "Unique ID of the customer: " << personalID << endl;
+    cout << "Location of the customer: (" << xCusPos << ", " << yCusPos << ")" << endl;
+}
 
 };
 //Definition of Static Variable
 int IdData:: UniqueNumber=0;
 
 
-//Class Business
-class Business: public Customer{
+// template <typename T>
+// class Customer: public IdData{
 
-private:
-    vector <string> MenuOptions;
-    vector <string> PricesMenu;
-    vector <int> ItemIndex;
-    vector <DeliveryPeople> DeliveryWorkers;
-    bool availableDelivery;
-    bool confirmationOrd;
-    int numberDrivers;
-    int AssignedDIndex;
-    float deliveryPrice;
+//     //business will be inherited from customer such that business can do all the stuff related to ordering the food and saving it, etc. 
 
-//check if it should be friend or derived class
-    friend class Receipt;
-    friend virtual bool confirmationOrd (Business *b1);
+//     private:
+//     vector <T> order;
+//     T item;
+//     vector <T> quantityVec; 
+//     int quantity;
+//     bool confirm;
+//     vector <int> indexOrderedItems;
+   
 
-public:
-Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee){
+//     friend class Business;
+//     friend class Receipt;
 
-    availableDelivery=false;
-    confirmationOrd=false;
-    numberDrivers=deliveryNum;
-    deliveryPrice=deliveryfee;
-    AssignedDIndex=-1;
-    for (int i=0; i<rows; i++){
-        ItemIndex. push_back(i);
-        MenuOptions.push_back(ArrMenu[i][0]);
-        PricesMenu. push_back(ArrMenu[i][1]);
-    }
+//     public:
 
-    for (int j=0; j<numberDrivers; j++){
-        DeliveryPeople newObject;
-        DeliveryWorkers.push_back(newObject);
-    }
-
-}
-
-//Setter and Getter Functions
-
-vector <int> getItemIndex (){ return ItemIndex;}
-vector <string> getMenuOptions(){return MenuOptions;}
-vector <string> getPricesMenu (){return PricesMenu;}
+//     //Constructor
+//     Customer (){
+//         confirm=false;
+//         quantity=0;
+//     }
 
 
+//     //Order Food
+//     void OrderFood (){
+//         int errorselection=-1;
 
+//     do{
+//         cout << "From the options shown in the Menu above, which one would you like to order?
+//         Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
+//         cin >> item;
+//         cout << "How many would you like to order"
+//         cin>> quantity;
+//         if (quantity<=0){
+//             cout<<"That is an invalid order, please try ordering again. Select 1 to return to item selection, and 0 to end the program"<< endl;
+//             cin<<errorselection;
+//                     if(errorselection==0){
+//                         exit(0);
+//                     }
+//             while(errorselection!=1||errorselection!=0){
+//                 cout<<"Invalid selection, please try again. Select 1 to return to item selection and 0 to en program"<< endl;
+//                 cin >> errorselection;
+//                 if(errorselection==0){
+//                         exit(0);
+//                     }
+//             }
+                
+//         }
+//         else if(errorselection!=1){
+//             order.push_back(item);
+//             quantityVec.push_back(quantity);
+//             cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
+//             cin>> ExtraproductDecision
+//             do{
+//                 if (ExtraproductDecision!=0){
+//                     cout <<"Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
+//                     cin >> item;
+//                     cout << "How many would you like to order"
+//                     cin>> quantity;
+//                         if (quantity<=0){
+//                             cout<<"That is an invalid order, please try ordering again. Select 1 to return to inital item selection (previous ordered items will need to be re-ordered), and 0 to end the program"<< endl;
+//                             cin<<errorselection;
+//                                 if(errorselection==0){
+//                                     exit(0);
+//                                 }
+//                                 while(errorselection!=1||errorselection!=0){
+//                                     cout<<"Invalid selection, please try again. Select 1 to return to item selection and 0 to en program"<< endl;
+//                                     cin >> errorselection;
+//                                         if(errorselection==0){
+//                                             exit(0);
+//                                             }
+//                                 }
+//                         }
+//                         else if(errorselection!=1){
+//                             order.push_back(item);
+//                             quantityVec.push_back(quantity);
+//                             cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
+//                             cin>> ExtraproductDecision
+//                 }
+//                     }
+//         }while (ExtraproductDecision!=0&&errorselection!=1);
 
-//Function to determine availability of Drivers
-//Function Overloading
-vector <int> DriverAvailable (int a){
-//Stablish a try and catch in case the -1 is passed.
-//Create a dynamic array that can save the number of drivers that are available. There will be max n number of drivers available. But they can be less, that is why you will 
-//use dynamic memory array. Did not use dynamic because vector would be more efficient as it creates the mmeory automatically
-vector <int> indexVecAvailable;
-    for (int i=0; i<numberDrivers; i++){
-       if(DeliveryPeople[i].getavailability()==true){
-        indexVecAvailable.push_back(i);
-       }
-    }
-return indexVecAvailable;
-}
+//         if(error selection!=1){
+//         cout<< "Your Order has been recorded!!!" << endl;}
+        
+//         }
 
-bool DriverAvailable (bool a){
-    bool available=false;
-    for (int i=0; i<numberDrivers; i++){
-       if(DeliveryPeople[i].getavailability()==true){
-        available = true;
-       }
-    }
-return available;
-}
+//     }while (errorselection==1)
+//     }
 
-//Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING
-bool OrderConfirmation (){
-    bool variableresult=false;
-    if (DriverAvailable(true)==true){
-        variableresult=true;
-    }
-return variableresult;
-}
+//     void printOrder (Business *b1){
+//         cout << "The recorded order is shown below: " << endl;
 
+//         if(typeid(order[0])==typeid(int)){
+//             for (int j=0; j<order.size();j++){
+//             for (int i=0; i<b1->ItemIndex.size(); i++){
 
-//You may need to do function overloading to also obtain a function that gv=ives you the specific distance between a delivery person and a customer to later be able to calculate
-//the time that it will take the driver to arrive to the customer's location 
-//Assign Driver Function
-DeliveryPeople AssignedDriverInfo (Customer *Example){
-    //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
-    float xdriver;
-    float ydriver;
-    float xcustomer;
-    float ycustomer;
-    float intermediate;
-    float distance;
-    float minDistance=10000000000000;
-     // careful with possible compilation problems due to -1 as initial index of the assignedDindex
+//                 if(order[j]==b1->ItemIndex[i]){
+//                 cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i] << endl;
+//                 indexOrderedItems.push_back(i);
+//                 break;
+//                 }
+
+//             }}
+//         }
+//         else{
+//             for (int j=0; j<order.size();j++){
+//             for (int i=0; i<b1->MenuOptions.size(); i++){
+//                 if(order[j]==b1->MenuOptions[i]){
+//                 cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i]] << endl;
+//                 indexOrderedItems.push_back(i);
+//                 break;
+//                 }
+
+//             }}
+
+//         }
+//     }
+
+//     //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. virtual
+//     virtual bool confirmationOrd (Business *b1){
+
+//         printOrder(b1);
+
+//         cout << "If the order is correct, please select 1, otherwise select 0"<< endl;
+//         cin << confirm;
+
+//         return confirm;
+
+//     }
+
+//     //Get the details of the customer
+//     void IdCustomer () {
+
+        
+
+//     }
+
+//     //Getter functions
+//     vector <T> getOrder (return order;)
+//     vector <T> getQuantity (return quantityVec;)
+//     bool getCusConfirmation (return confirm;)
     
-    xcustomer=Example->getCusPosX();
-    ycustomer=Example->getCusPosY();
 
-    if (DriverAvailable(true)==true){
-        int sizevector= DriverAvailable(1).size();
-//FIND THE DISTANCE BETWEEN THE CUSTOMER AND EACH OF THE ELIVERY WORKERS, AND SAVE THE ONE THAT IS THE SMALLEST ONE. ASSIGN THAT DRIVER TO THE CUSTOMER. 
+// };
+
+
+
+
+// //Class Business
+// class Business: public Customer{
+
+// private:
+//     vector <string> MenuOptions;
+//     vector <string> PricesMenu;
+//     vector <int> ItemIndex;
+//     vector <DeliveryPeople> DeliveryWorkers;
+//     string nameRestaurant;
+//     bool availableDelivery;
+//     bool confirmationOrd;
+//     int numberDrivers;
+//     int AssignedDIndex;
+//     float deliveryPrice;
+
+// //check if it should be friend or derived class
+//     friend class Receipt;
+//     friend virtual bool confirmationOrd (Business *b1);
+
+// public:
+// Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, string resName){
+
+//     availableDelivery=false;
+//     confirmationOrd=false;
+//     nameRestaurant=resName;
+//     numberDrivers=deliveryNum;
+//     deliveryPrice=deliveryfee;
+//     AssignedDIndex=-1;
+//     for (int i=0; i<rows; i++){
+//         ItemIndex. push_back(i);
+//         MenuOptions.push_back(ArrMenu[i][0]);
+//         PricesMenu. push_back(ArrMenu[i][1]);
+//     }
+
+//     for (int j=0; j<numberDrivers; j++){
+//         DeliveryPeople newObject;
+//         DeliveryWorkers.push_back(newObject);
+//     }
+
+// }
+
+// //Setter and Getter Functions
+
+// vector <int> getItemIndex (){ return ItemIndex;}
+// vector <string> getMenuOptions(){return MenuOptions;}
+// vector <string> getPricesMenu (){return PricesMenu;}
+// string getResName (){return nameRestaurant;}
+
+// //Function to print the Menu
+// void PrintMenu (){
+// cout<< "Welcome to " << nameRestaurant << "!!" << endl<< endl << endl;
+// cout << "Menu." << endl;
+
+// for (int i=0; i< MenuOptions.size(); i++){
+//     cout << ItemIndex[i] << "          " << MenuOptions[i] << "          " <<"$" <<PricesMenu[i] << endl;
+// }
+// }
+
+// //Function to determine availability of Drivers
+// //Function Overloading
+// vector <int> DriverAvailable (int a){
+// //Stablish a try and catch in case the -1 is passed.
+// //Create a dynamic array that can save the number of drivers that are available. There will be max n number of drivers available. But they can be less, that is why you will 
+// //use dynamic memory array. Did not use dynamic because vector would be more efficient as it creates the mmeory automatically
+// vector <int> indexVecAvailable;
+//     for (int i=0; i<numberDrivers; i++){
+//        if(DeliveryPeople[i].getavailability()==true){
+//         indexVecAvailable.push_back(i);
+//        }
+//     }
+// return indexVecAvailable;
+// }
+
+// bool DriverAvailable (bool a){
+//     bool available=false;
+//     for (int i=0; i<numberDrivers; i++){
+//        if(DeliveryPeople[i].getavailability()==true){
+//         available = true;
+//        }
+//     }
+// return available;
+// }
+
+// //Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING
+// bool OrderConfirmation (){
+//     bool variableresult=false;
+//     if (DriverAvailable(true)==true){
+//         variableresult=true;
+//     }
+// return variableresult;
+// }
+
+
+// //You may need to do function overloading to also obtain a function that gv=ives you the specific distance between a delivery person and a customer to later be able to calculate
+// //the time that it will take the driver to arrive to the customer's location 
+// //Assign Driver Function
+// DeliveryPeople AssignedDriverInfo (Customer *Example){
+//     //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
+//     float xdriver;
+//     float ydriver;
+//     float xcustomer;
+//     float ycustomer;
+//     float intermediate;
+//     float distance;
+//     float minDistance=10000000000000;
+//      // careful with possible compilation problems due to -1 as initial index of the assignedDindex
+    
+//     xcustomer=Example->getCusPosX();
+//     ycustomer=Example->getCusPosY();
+
+//     if (DriverAvailable(true)==true){
+//         int sizevector= DriverAvailable(1).size();
+// //FIND THE DISTANCE BETWEEN THE CUSTOMER AND EACH OF THE ELIVERY WORKERS, AND SAVE THE ONE THAT IS THE SMALLEST ONE. ASSIGN THAT DRIVER TO THE CUSTOMER. 
        
-       for (int i=0; i<sizevector; i++){
-        xdriver=DeliveryWorkers[DriverAvailable(1)[i]].getxpos();
-        ydriver=DeliveryWorkers[DriverAvailable(1)[i]]. getypos();
+//        for (int i=0; i<sizevector; i++){
+//         xdriver=DeliveryWorkers[DriverAvailable(1)[i]].getxpos();
+//         ydriver=DeliveryWorkers[DriverAvailable(1)[i]]. getypos();
 
-        intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
-        distance=sqrt(intermediate);
+//         intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
+//         distance=sqrt(intermediate);
 
-        if (distance<minDistance){
-            assignedDindex=DriverAvailable(1)[i];}
-       }
-    }
+//         if (distance<minDistance){
+//             assignedDindex=DriverAvailable(1)[i];}
+//        }
+//     }
 
-    return DeliveryWorkers[assignedDindex];
+//     return DeliveryWorkers[assignedDindex];
 
-}
+// }
 
-float AssignedDriverInfo (Customer *Example, int index){
-    //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
-    float xdriver;
-    float ydriver;
-    float xcustomer;
-    float ycustomer;
-    float intermediate;
-    float distance;
-    //careful comilation problems with a wrong index being passed
+// float AssignedDriverInfo (Customer *Example, int index){
+//     //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
+//     float xdriver;
+//     float ydriver;
+//     float xcustomer;
+//     float ycustomer;
+//     float intermediate;
+//     float distance;
+//     //careful comilation problems with a wrong index being passed
     
-    xcustomer=Example->getCusPosX();
-    ycustomer=Example->getCusPosY();
-    xdriver=DeliveryWorkers[index].getxpos();
-    ydriver=DeliveryWorkers[index]. getypos();
-        //calculate distance
-        intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
-        distance=sqrt(intermediate);
-    return distance;
-}
+//     xcustomer=Example->getCusPosX();
+//     ycustomer=Example->getCusPosY();
+//     xdriver=DeliveryWorkers[index].getxpos();
+//     ydriver=DeliveryWorkers[index]. getypos();
+//         //calculate distance
+//         intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2)
+//         distance=sqrt(intermediate);
+//     return distance;
+// }
 
-};
+// };
 
-//Receipt of the order
-class Receipt {
-    private:
+// //Receipt of the order
+// class Receipt: public Customer{
     
+//     public:
+//     Receipt (){ };
 
-    public:
-    Receipt (){
-    }
+//     //Setter and Getter Functions
+        
+//     //Print the receipt
+//     void calculateCost const (Customer *cus1, Business *b2){ 
+//         float totalPrice=0;
 
-    //Setter and Getter Functions
+//         cus1->PrintIDdata();
+//        bool confirmed= cus1->OrderConfirmation(b2);
+//         if(confirmed==true){
 
-    //Print the receipt
+//         cout<< "Your receipt is shown below " << endl;
 
-    void calculateCost const (Customer cus1, ){ 
+//             for(int i=0;i<cus1->indexOrderedItems(size);i++){
+//                cout<< cus1->quantityVec[i] <<"   "<<b2->MenuOptions[cus1->indexOrderedItems]<< "  " <<  cus1->quantityVec[i]*b2->PricesMenu[cus1->indexOrderedItems];
+//                totalPrice+=cus1->quantityVec[i]*b2->PricesMenu[cus1->indexOrderedItems];
+//             }
+//             cout<<"Your total would be of $" << totalPrice << endl;
+//         }
+//         else {
+//             cout << "Your order was not confirmed. Please try again later"<< endl;
+//             exit(0);
+//         }
 
-            
-
-    }
-
-    void printReceipt const (){
-
-
-    }
-
+//     }
     
-};
+// };
 
-int main (){
+// int main (){
 
 
-
-    delete [] //YOU NEED TO ADD THE DYNAMICALLY MEMORY ARRAY THAT YOU CREATE WITH DRIVERAVAILABLE FUNCTION. You must assig the return value to a variable so that you are able to delete it.
-    return 0;
-}
+//     return 0;
+// }
