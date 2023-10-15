@@ -17,10 +17,10 @@ class IdData;
 class Receipt;
 
 //Function Declarations
-Business::vector <int> getItemIndex ();
-Business::vector <string> getMenuOptions();
-Business::vector <float> getPricesMenu ();
-Business::string getResName ();
+// Business::vector <int> getItemIndex ();
+// Business::vector <string> getMenuOptions();
+// Business::vector <float> getPricesMenu ();
+// Business::string getResName ();
 
 //Random Function configuration
 int rand_int(int a, int b)
