@@ -12,8 +12,7 @@ using namespace std;
         float totalPrice=0;
 
         cout<< "Your receipt is shown below " << endl;
-        cout<< "Customer's ID details: " << endl;
-        b2->IdCustomerDetails();
+        b2->Customer::PrintIDdata();
         cout<< "Customer's Order: "<< endl;
             for(int i=0;i<b2->indexOrderedItems.size();i++){
                cout<< b2->quantityVec[i] <<"   "<<b2->MenuOptions[b2->indexOrderedItems[i]]<< "  " <<  b2->quantityVec[i]*b2->PricesMenu[b2->indexOrderedItems[i]];

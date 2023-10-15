@@ -36,7 +36,7 @@ void setCusPosY (float y);
 void setName (std::string name);
 
 //print all data
-void PrintIDdata ();
+virtual void PrintIDdata ();
 };
 
 

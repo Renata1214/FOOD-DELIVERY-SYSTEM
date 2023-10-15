@@ -98,8 +98,10 @@ using namespace std;
         return confirm;}
 
 //Get the details of the customer
-    void Customer::IdCustomerDetails () {
-        PrintIDdata(); 
+    void Customer::PrintIDdata () {
+        cout<<"Customer's ID details recorded to process the order can be found below: " << endl;
+        IdData::PrintIDdata(); 
+        cout << "Note that your personal information will remain confidential "<< endl;
     }
 
 //Getter functions
