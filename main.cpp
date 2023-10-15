@@ -68,32 +68,17 @@ if(business1.OrderConfirmation()==true){
         std::string customername;
         float xcoordinatecustomer;
         float ycoordinatecustomer;
-        int loopvar1=1;
-        int loopvar2=1;
 
         cout<< "Please write your full name!" << endl;
         cin>> customername;
         //Loop to enter the position of the customer and check if it is within the bounds that the drivers can reach
-        while (loopvar1==1){
+       
         cout<< "Plese write the x coordinate of your location with respect to the Restaurant!" <<endl;
         cin >>xcoordinatecustomer;
-        if (xcoordinatecustomer<-100 ||xcoordinatecustomer>100){
-            cout << "Your coordinate is not valid. Try with another location." << endl;
-        }
-        else {
-            loopvar1=0;
-        }
-        }
-        while (loopvar2==1){
+        
        cout<< "Please write the y coordinate of your location with respect to the Restaurant!" << endl;
         cin>>ycoordinatecustomer;
-        if (ycoordinatecustomer<-100 ||ycoordinatecustomer>100){
-            cout << "Your coordinate is not valid. Try with another location." << endl;
-        }
-        else {
-            loopvar2=0;
-        }
-        }
+        
         business1.setCusPosX(xcoordinatecustomer);
         business1.setCusPosY(ycoordinatecustomer);
         business1.setName(customername);

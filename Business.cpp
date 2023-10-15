@@ -114,7 +114,7 @@
                 xdriver=DeliveryWorkers[DriverAvailable(1)[i]].getxpos();
                 ydriver=DeliveryWorkers[DriverAvailable(1)[i]]. getypos();
 
-                intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2);
+                intermediate= pow(xdriver-0,2)+pow(ydriver-0,2);
                 distance=sqrt(intermediate);
 
                 if (distance<minDistance){
@@ -133,18 +133,24 @@
             float ydriver;
             float xcustomer;
             float ycustomer;
-            float intermediate;
-            float distance;
+            float intermediate1;
+            float intermediate2;
+            float distance1;
+            float distance2;
             //careful comilation problems with a wrong index being passed
             
             xcustomer=getCustomerPositionX();
             ycustomer=getCustomerPositionY();
             xdriver=DeliveryWorkers[index].getxpos();
             ydriver=DeliveryWorkers[index]. getypos();
-                //calculate distance
-                intermediate= pow(xdriver-xcustomer,2)+pow(ydriver-ycustomer,2);
-                distance=sqrt(intermediate);
-            return distance;
+
+            //calculate the distance of the delivery person from the resturant
+            intermediate1=pow(0-xdriver,2)+pow(0-ydriver,2);
+            distance1=sqrt(intermediate1);
+                //calculate distance of the customer from the restaurant 
+                intermediate2= pow(0-xcustomer,2)+pow(0-ycustomer,2);
+                distance2=sqrt(intermediate2);
+            return distance1+distance2;
         }
 
         void Business:: AssignDriverToCustomer () {
