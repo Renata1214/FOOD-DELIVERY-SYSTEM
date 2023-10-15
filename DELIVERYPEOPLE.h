@@ -26,6 +26,6 @@ bool getavailability ();
 int getID ();
 
 };
-int DeliveryPeople:: IDnumber=0;
+
 
 #endif

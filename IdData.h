@@ -34,7 +34,6 @@ void setName (string name);
 //print all data
 void PrintIDdata ();
 };
-//Definition of Static Variable
-int IdData:: UniqueNumber=0;
+
 
 #endif
