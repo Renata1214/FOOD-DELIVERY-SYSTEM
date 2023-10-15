@@ -52,13 +52,34 @@ int main (){
 
 void OrderingFoodRestaurant (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, string resName){
 
+//Create object restaurant
     Business business1 (ArrMenu, rows, columns, deliveryNum, deliveryfee, resName);
+    //Print menu 
     business1.PrintMenu();
+    //Order food function from customer class
     business1.OrderFood();
+    //check if the restaurant can accept the orer based on availability of drivers. Function from business class 
     if(business1.OrderConfirmation()==true){
+        //If accepted get the customers ID data, by accessing the setter functions from IdData class
+        string customername;
+        float xcoordinatecustomer;
+        float ycoordinatecustomer;
+        int loopvar=1;
 
-        business.setCusPosX();
-        business.
+        cout<< "Please write your full name!" << endl;
+        cin>> customername;
+        while (loopvar==1){
+        cout<< "Plese write the x coordinate of your lcation with respect to the Restaurant!" << endl;
+        cin>> xcoordinatecustomer;}
+        cout<< "Please write the y coordinate of your location with respect to the Restaurant!" << endl;
+        cin>>ycoordinatecustomer;
+        business.setCusPosX(xcoordinatecustomer);
+        business.setCusPosY(ycoordinatecustomer);
+        business.setName(customername);
+
+        // Assign a driver to the customer 
+        business.AssignedDriverInfo();
+        
 
 
     }

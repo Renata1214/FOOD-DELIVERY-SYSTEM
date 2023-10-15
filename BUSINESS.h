@@ -42,11 +42,15 @@ std::vector <int> DriverAvailable (int a);
 bool DriverAvailable (bool a);
 //Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING
 bool OrderConfirmation ();
+//Function to access the position of the customer (object that is automatically created when an object of business is created)
+float getCustomerPositionX ();
+float getCustomerPositionY ();
 //Assign Driver Function
-// template <typename U>
-DeliveryPeople AssignedDriverInfo (Customer *Example);
+DeliveryPeople AssignedDriverInfo ();
 //Function to get the data from the drivers
-float AssignedDriverInfo (Customer *Example, int index);
+float AssignedDriverInfo (int index);
+
+
 };
 
 #endif

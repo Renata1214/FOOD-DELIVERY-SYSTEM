@@ -82,14 +82,17 @@
             }
         return variableresult;
         }
-
+        
+//Function to access the position of the customer (object that is automatically created when an object of business is created)        
+        float Business::getCustomerPositionX (){return getCusPosX();}
+        float Business::getCustomerPositionY (){return getCusPosY();}
 
 //Information about the driver assigned to the customer: OBJECT
         //You may need to do function overloading to also obtain a function that gv=ives you the specific distance between a delivery person and a customer to later be able to calculate
         //the time that it will take the driver to arrive to the customer's location 
         //Assign Driver Function
         // template <typename U>
-        DeliveryPeople Business::AssignedDriverInfo (Customer *Example){
+        DeliveryPeople Business::AssignedDriverInfo (){
             //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
             float xdriver;
             float ydriver;
@@ -100,8 +103,8 @@
             float minDistance=10000000000000;
             // careful with possible compilation problems due to -1 as initial index of the assignedDindex
             
-            xcustomer=Example->getCusPosX();
-            ycustomer=Example->getCusPosY();
+            xcustomer=getCustomerPositionX();
+            ycustomer=getCustomerPositionY();
 
             if (DriverAvailable(true)==true){
                 int sizevector= DriverAvailable(1).size();
@@ -124,7 +127,7 @@
         }
 
 //Information about the driver assigned to the customer: DISTANCE
-        float Business::AssignedDriverInfo (Customer *Example, int index){
+        float Business::AssignedDriverInfo (int index){
             //DEFINE A TRY AND CATCH SO THAT IF THE FUNCTION IS CALLED WHEN THERE ARE NO DRIVERS AVAILABLE THE CODE DOES NOT STOP
             float xdriver;
             float ydriver;
@@ -134,8 +137,8 @@
             float distance;
             //careful comilation problems with a wrong index being passed
             
-            xcustomer=Example->getCusPosX();
-            ycustomer=Example->getCusPosY();
+            xcustomer=getCustomerPositionX();
+            ycustomer=getCustomerPositionY();
             xdriver=DeliveryWorkers[index].getxpos();
             ydriver=DeliveryWorkers[index]. getypos();
                 //calculate distance
