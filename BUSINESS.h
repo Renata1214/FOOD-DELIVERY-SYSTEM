@@ -33,12 +33,19 @@ private:
 public:
 Business (std::string ArrMenu[][2], int rows, int columns, int deliveryNum,float deliveryfee, std::string resName);
 //Setter and Getter Functions
-std::vector <int> getItemIndex ();
-std::vector <std::string> getMenuOptions();
-std::vector <float> getPricesMenu ();
-std::string getResName ();
+inline std::vector <int> getItemIndex (){ return ItemIndex;}
+inline std::vector <std::string> getMenuOptions(){return MenuOptions;}
+inline std::vector <float> getPricesMenu (){return PricesMenu;}
+inline std::string getResName (){return nameRestaurant;}
+
 //Function to print the Menu
-void PrintMenu ();
+inline void PrintMenu (){
+        std::cout<< "Welcome to " << nameRestaurant << "!!" << std::endl<< std::endl << std::endl;
+        std::cout << "Menu." << std::endl;
+        for (int i=0; i< MenuOptions.size(); i++){
+            std::cout << ItemIndex[i] << "          " << MenuOptions[i] << "          " <<"$" <<PricesMenu[i] << std::endl;
+        }
+        }
 //Function to determine availability of Drivers
 std::vector <int> DriverAvailable (int a);
 //Function to determine if any of the drivers are available
@@ -46,8 +53,8 @@ bool DriverAvailable (bool a);
 //Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING
 bool OrderConfirmation ();
 //Function to access the position of the customer (object that is automatically created when an object of business is created)
-float getCustomerPositionX ();
-float getCustomerPositionY ();
+inline float getCustomerPositionX (){return getCusPosX();}
+inline float getCustomerPositionY (){return getCusPosY();}
 //Assign Driver Function
 DeliveryPeople AssignedDriverInfo ();
 //Function to get the data from the drivers
@@ -55,7 +62,11 @@ float AssignedDriverInfo (int index);
 //Assign Driver to customer
 void AssignDriverToCustomer ();
 //Pretend delivery
-void PretendDelivery ();
+inline void PretendDelivery () {
+            DeliveryWorkers[AssignedDIndex].setPosition(getCustomerPositionX(), getCustomerPositionY());
+            std::cout<< "Your order has been successfully delivered! Thank you for ordering from " << nameRestaurant << std::endl;
+            DeliveryWorkers[AssignedDIndex].setavailability(true);
+        }
 
 float getdriverslocation ();
 

@@ -34,19 +34,8 @@
         }
 
 //Setter and Getter Functions
-        vector <int> Business::getItemIndex (){ return ItemIndex;}
-        vector <string> Business::getMenuOptions(){return MenuOptions;}
-        vector <float> Business::getPricesMenu (){return PricesMenu;}
-        string Business::getResName (){return nameRestaurant;}
 
 //Function to print the Menu
-        void Business::PrintMenu (){
-        cout<< "Welcome to " << nameRestaurant << "!!" << endl<< endl << endl;
-        cout << "Menu." << endl;
-        for (int i=0; i< MenuOptions.size(); i++){
-            cout << ItemIndex[i] << "          " << MenuOptions[i] << "          " <<"$" <<PricesMenu[i] << endl;
-        }
-        }
 
 //Function to determine availability of Drivers
         //Function Overloading
@@ -84,8 +73,6 @@
         }
         
 //Function to access the position of the customer (object that is automatically created when an object of business is created)        
-        float Business::getCustomerPositionX (){return getCusPosX();}
-        float Business::getCustomerPositionY (){return getCusPosY();}
 
 //Information about the driver assigned to the customer: OBJECT
         //You may need to do function overloading to also obtain a function that gv=ives you the specific distance between a delivery person and a customer to later be able to calculate
@@ -158,12 +145,6 @@
             cout<<" A driver has been assigned your order!" << endl;
             cout<< "Their Unique ID is " << DeliveryWorkers[AssignedDIndex].getID()<< endl;
             cout<< "The distance of the driver from you is of " << AssignedDriverInfo(AssignedDIndex) << " meters. Hence, the delivery time will take around " << AssignedDriverInfo(AssignedDIndex)/250 << " minutes (Assuming a velocity of 15km per hour)"<< endl; 
-        }
-
-        void Business:: PretendDelivery () {
-            DeliveryWorkers[AssignedDIndex].setPosition(getCustomerPositionX(), getCustomerPositionY());
-            cout<< "Your order has been successfully delivered! Thank you for ordering from " << nameRestaurant << endl;
-            DeliveryWorkers[AssignedDIndex].setavailability(true);
         }
 
         float Business:: getdriverslocation (){

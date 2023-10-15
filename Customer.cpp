@@ -104,10 +104,6 @@ using namespace std;
         cout << "Note that your personal information will remain confidential "<< endl;
     }
 
-//Getter functions
-    vector <string> Customer::getOrder () {return order;}
-    vector <int> Customer::getQuantity (){return quantityVec;}
-    bool Customer::getCusConfirmation (){return confirm;}
 
 
 

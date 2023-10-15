@@ -30,9 +30,11 @@ class Customer: public IdData{
     //Constructor
     Customer ();
     //Getter functions
-    std::vector <std::string> getOrder ();
-    std::vector <int> getQuantity ();
-    bool getCusConfirmation ();
+    //Getter functions
+    inline std::vector <std::string> getOrder () {return order;}
+   inline std::vector <int> getQuantity (){return quantityVec;}
+    inline bool getCusConfirmation (){return confirm;}
+
     //Order Food
     void OrderFood ();
     //Print Order
