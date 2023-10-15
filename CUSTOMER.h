@@ -40,7 +40,7 @@ class Customer: public IdData{
     //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. virtual
      bool customerConfirm (Business *b1);
     //Get the details of the customer
-    void IdCustomer ();
+    void IdCustomerDetails ();
 };
 
 #endif

@@ -8,12 +8,12 @@
 #include "CUSTOMER.h"
 #include "BUSINESS.h"
 
-class Receipt: public Customer{
+class Receipt{
     public:
     Receipt (){ };
     //Setter and Getter Functions
     //Print the receipt
-    void calculateCost (Customer*cus1, Business *b2) const;
+    void calculateCost (Business *b2) const;
 };
 
 

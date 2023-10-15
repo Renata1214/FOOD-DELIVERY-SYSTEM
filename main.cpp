@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void OrderingFoodRestaurant ();
+void OrderingFoodRestaurant (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, string resName);
 
 int main (){
 
@@ -27,6 +27,7 @@ int main (){
         //Name of the restaurant
         string NameRes= "Renata's Kitchen"
 
+        OrderingFoodRestaurant(MenuRestaurant, 4,2,restaurantDrivers,dFee,NameRes);
 
         break;
 
@@ -99,16 +100,13 @@ if(business1.OrderConfirmation()==true){
 
         if(customerConfirmation==true){
             const Receipt receipt1;
-            receipt1. calculateCost ()
+            receipt1.calculateCost (&business1);
         }
 
         else{
 
         }
-        // Assign a driver to the customer 
-        
-
-        business1.AssignedDriverInfo();
+       
         
 
 

@@ -8,25 +8,17 @@ using namespace std;
 //Setter and Getter Functions
         
 //Print the receipt
-    void Receipt::calculateCost (Customer*cus1, Business *b2) const{ 
+    void Receipt::calculateCost (Business *b2) const{ 
         float totalPrice=0;
 
-        cus1->PrintIDdata();
-       bool confirmed= cus1->customerConfirm(b2);
-        if(confirmed==true){
-
+        b2->IdCustomerDetails();
         cout<< "Your receipt is shown below " << endl;
 
-            for(int i=0;i<cus1->indexOrderedItems.size();i++){
-               cout<< cus1->quantityVec[i] <<"   "<<b2->MenuOptions[cus1->indexOrderedItems[i]]<< "  " <<  cus1->quantityVec[i]*b2->PricesMenu[cus1->indexOrderedItems[i]];
-               totalPrice+=cus1->quantityVec[i]*b2->PricesMenu[cus1->indexOrderedItems[i]];
+            for(int i=0;i<b2->indexOrderedItems.size();i++){
+               cout<< b2->quantityVec[i] <<"   "<<b2->MenuOptions[b2->indexOrderedItems[i]]<< "  " <<  b2->quantityVec[i]*b2->PricesMenu[b2->indexOrderedItems[i]];
+               totalPrice+=b2->quantityVec[i]*b2->PricesMenu[b2->indexOrderedItems[i]];
             }
             cout<<"Your total would be of $" << totalPrice << endl;
-        }
-        else {
-            cout << "Your order was not confirmed. Please try again later"<< endl;
-           exit(0);
-        }
-
+        
     }
     

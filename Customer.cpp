@@ -112,7 +112,9 @@ using namespace std;
         return confirm;}
 
 //Get the details of the customer
-    void Customer::IdCustomer () {};
+    void Customer::IdCustomerDetails () {
+        PrintIDdata(); 
+    }
 
 //Getter functions
     vector <string> Customer::getOrder () {return order;}
