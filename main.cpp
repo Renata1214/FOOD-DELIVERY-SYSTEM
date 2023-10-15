@@ -59,31 +59,65 @@ void OrderingFoodRestaurant (string **ArrMenu, int rows, int columns, int delive
     //Order food function from customer class
     business1.OrderFood();
     //check if the restaurant can accept the orer based on availability of drivers. Function from business class 
-    if(business1.OrderConfirmation()==true){
+if(business1.OrderConfirmation()==true){
         //If accepted get the customers ID data, by accessing the setter functions from IdData class
         string customername;
         float xcoordinatecustomer;
         float ycoordinatecustomer;
-        int loopvar=1;
+        int loopvar1=1;
+        int loopvar2=1;
 
         cout<< "Please write your full name!" << endl;
         cin>> customername;
-        while (loopvar==1){
+        //Loop to enter the position of the customer and check if it is within the bounds that the drivers can reach
+        while (loopvar1==1){
         cout<< "Plese write the x coordinate of your lcation with respect to the Restaurant!" << endl;
-        cin>> xcoordinatecustomer;}
-        cout<< "Please write the y coordinate of your location with respect to the Restaurant!" << endl;
+        cin>> xcoordinatecustomer;
+        if (xcoordinatecustomer<-100 ||xcoordinatecustomer>100){
+            cout << "Your coordinate is not valid. Try with another location." << endl;
+        }
+        else {
+            loopvar1=0;
+        }
+        }
+        while (loopvar2==1){
+       cout<< "Please write the y coordinate of your location with respect to the Restaurant!" << endl;
         cin>>ycoordinatecustomer;
-        business.setCusPosX(xcoordinatecustomer);
-        business.setCusPosY(ycoordinatecustomer);
-        business.setName(customername);
+        if (ycoordinatecustomer<-100 ||ycoordinatecustomer>100){
+            cout << "Your coordinate is not valid. Try with another location." << endl;
+        }
+        else {
+            loopvar2=0;
+        }
+        }
+        business1.setCusPosX(xcoordinatecustomer);
+        business1.setCusPosY(ycoordinatecustomer);
+        business1.setName(customername);
 
+//here tou should change to do override of function from business to class customer
+        bool customerConfirmation= business1.customerConfirm (&business1);
+
+        if(customerConfirmation==true){
+            const Receipt receipt1;
+            receipt1. calculateCost ()
+        }
+
+        else{
+
+        }
         // Assign a driver to the customer 
-        business.AssignedDriverInfo();
+        
+
+        business1.AssignedDriverInfo();
         
 
 
     }
     
+else{
+    cout <<"At the moment we are unable to place your order as all our drivers are occupied, please try ordering later. We apologize for the inconvenience." << endl;
+    exit(0);
+    }
 
 
 
