@@ -1,3 +1,6 @@
+#include "IdData.h"
+
+using namespace std;
 
 //Constructor
         IdData::IdData ( ) {

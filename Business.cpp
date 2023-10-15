@@ -4,7 +4,7 @@
 
 
 //Constructor 
-        Business::Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, string resName){
+        Business::Business (string ArrMenu[][2], int rows, int columns, int deliveryNum,float deliveryfee, string resName){
 
             availableDelivery=false;
             confirmationOrd=false;

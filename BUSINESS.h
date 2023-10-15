@@ -2,11 +2,14 @@
 #define BUSINESS_H
 
 #include "CUSTOMER.h"
+#include "DELIVERYPEOPLE.h"
 #include <iostream>
 #include <cmath>
 #include <string>
 #include <vector>
 #include <typeinfo>
+
+
 
 //Class Business
 class Business: public Customer{
@@ -28,7 +31,7 @@ private:
     friend bool confirmationOrd (Business *b1);
 
 public:
-Business (std::string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, std::string resName);
+Business (std::string ArrMenu[][2], int rows, int columns, int deliveryNum,float deliveryfee, std::string resName);
 //Setter and Getter Functions
 std::vector <int> getItemIndex ();
 std::vector <std::string> getMenuOptions();

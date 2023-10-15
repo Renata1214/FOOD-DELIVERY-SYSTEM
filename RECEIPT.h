@@ -10,7 +10,7 @@
 
 class Receipt{
     public:
-    Receipt (){ };
+    Receipt ();
     //Setter and Getter Functions
     //Print the receipt
     void calculateCost (Business *b2) const;

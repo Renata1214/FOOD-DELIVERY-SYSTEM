@@ -1,4 +1,5 @@
 #include "CUSTOMER.h"
+#include "BUSINESS.h"
 
 using namespace std;
 
@@ -80,10 +81,10 @@ using namespace std;
 
         if(typeid(order[0])==typeid(int)){
             for (int j=0; j<order.size();j++){
-            for (int i=0; i<b1->ItemIndex.size(); i++){
+            for (int i=0; i<b1->getItemIndex().size(); i++){
 
-                if(order[j]==b1->ItemIndex[i]){
-                cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i] << endl;
+                if(order[j]==b1->getItemIndex()[i]){
+                cout << "Quantity: " << quantityVec[j] << " " << b1->getMenuOptions()[i] << endl;
                 indexOrderedItems.push_back(i);
                 break;
                 }
@@ -92,9 +93,9 @@ using namespace std;
         }
         else{
             for (int j=0; j<order.size();j++){
-            for (int i=0; i<b1->MenuOptions.size(); i++){
-                if(order[j]==b1->MenuOptions[i]){
-                cout << "Quantity: " << quantityVec[j] << " " << b1->MenuOptions[i] << endl;
+            for (int i=0; i<b1->getMenuOptions().size(); i++){
+                if(order[j]==b1->getMenuOptions()[i]){
+                cout << "Quantity: " << quantityVec[j] << " " << b1->getMenuOptions()[i] << endl;
                 indexOrderedItems.push_back(i);
                 break;
                 }
