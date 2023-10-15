@@ -79,19 +79,6 @@ using namespace std;
     void Customer::printOrder (Business *b1){
         cout << "The recorded order is shown below: " << endl;
 
-        if(typeid(order[0])==typeid(int)){
-            for (int j=0; j<order.size();j++){
-            for (int i=0; i<b1->getItemIndex().size(); i++){
-
-                if(order[j]==b1->getItemIndex()[i]){
-                cout << "Quantity: " << quantityVec[j] << " " << b1->getMenuOptions()[i] << endl;
-                indexOrderedItems.push_back(i);
-                break;
-                }
-
-            }}
-        }
-        else{
             for (int j=0; j<order.size();j++){
             for (int i=0; i<b1->getMenuOptions().size(); i++){
                 if(order[j]==b1->getMenuOptions()[i]){
@@ -101,8 +88,6 @@ using namespace std;
                 }
 
             }}
-
-        }
     }
 
 //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. virtual

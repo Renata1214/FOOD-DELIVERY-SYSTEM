@@ -65,7 +65,7 @@ void OrderingFoodRestaurant (string ArrMenu[][2], int rows, int columns, int del
     //check if the restaurant can accept the orer based on availability of drivers. Function from business class 
 if(business1.OrderConfirmation()==true){
         //If accepted get the customers ID data, by accessing the setter functions from IdData class
-        string customername;
+        std::string customername;
         float xcoordinatecustomer;
         float ycoordinatecustomer;
         int loopvar1=1;
@@ -75,8 +75,8 @@ if(business1.OrderConfirmation()==true){
         cin>> customername;
         //Loop to enter the position of the customer and check if it is within the bounds that the drivers can reach
         while (loopvar1==1){
-        cout<< "Plese write the x coordinate of your lcation with respect to the Restaurant!" << endl;
-        cin>> xcoordinatecustomer;
+        cout<< "Plese write the x coordinate of your location with respect to the Restaurant!" <<endl;
+        cin >>xcoordinatecustomer;
         if (xcoordinatecustomer<-100 ||xcoordinatecustomer>100){
             cout << "Your coordinate is not valid. Try with another location." << endl;
         }
@@ -103,21 +103,22 @@ if(business1.OrderConfirmation()==true){
 
         if(customerConfirmation==true){
             const Receipt receipt1;
+            cout<< endl;
             receipt1.calculateCost (&business1);
+            business1.AssignDriverToCustomer();
+            cout<< endl;
+            cout<<"Your order will be delivered soon!!!" << endl;
+            cout<< endl;
+            business1. PretendDelivery();
         }
 
-        // else{
-
-        // }
-       
-
+        else{
+            cout<< "You have not confirmed your order, we are sorry to hear that. If you want to order later, we will happily take your order!" << endl;
+            exit(0);
+        }
     }
-    
 else{
     cout <<"At the moment we are unable to place your order as all our drivers are occupied, please try ordering later. We apologize for the inconvenience." << endl;
     exit(0);
     }
-
-
-
 }

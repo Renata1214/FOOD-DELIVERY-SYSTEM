@@ -146,3 +146,20 @@
                 distance=sqrt(intermediate);
             return distance;
         }
+
+        void Business:: AssignDriverToCustomer () {
+            AssignedDriverInfo().setavailability(false);
+            cout<<" A driver has been assigned your order!" << endl;
+            cout<< "Their Unique ID is " << DeliveryWorkers[AssignedDIndex].getID()<< endl;
+            cout<< "The distance of the driver from you is of " << AssignedDriverInfo(AssignedDIndex) << " meters. Hence, the delivery time will take around " << AssignedDriverInfo(AssignedDIndex)/250 << " minutes (Assuming a velocity of 15km per hour)"<< endl; 
+        }
+
+        void Business:: PretendDelivery () {
+            DeliveryWorkers[AssignedDIndex].setPosition(getCustomerPositionX(), getCustomerPositionY());
+            cout<< "Your order has been successfully delivered! Thank you for ordering from " << nameRestaurant << endl;
+            DeliveryWorkers[AssignedDIndex].setavailability(true);
+        }
+
+        float Business:: getdriverslocation (){
+            return DeliveryWorkers[AssignedDIndex].getxpos();
+        }

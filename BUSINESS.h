@@ -52,7 +52,12 @@ float getCustomerPositionY ();
 DeliveryPeople AssignedDriverInfo ();
 //Function to get the data from the drivers
 float AssignedDriverInfo (int index);
+//Assign Driver to customer
+void AssignDriverToCustomer ();
+//Pretend delivery
+void PretendDelivery ();
 
+float getdriverslocation ();
 
 };
 
