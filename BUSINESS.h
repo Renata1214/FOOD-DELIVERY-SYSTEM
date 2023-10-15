@@ -12,11 +12,11 @@
 class Business: public Customer{
 
 private:
-    vector <string> MenuOptions;
-    vector <float> PricesMenu;
-    vector <int> ItemIndex;
-    vector <DeliveryPeople> DeliveryWorkers;
-    string nameRestaurant;
+    std::vector <std::string> MenuOptions;
+    std::vector <float> PricesMenu;
+    std::vector <int> ItemIndex;
+    std::vector <DeliveryPeople> DeliveryWorkers;
+    std::string nameRestaurant;
     bool availableDelivery;
     bool confirmationOrd;
     int numberDrivers;
@@ -28,16 +28,16 @@ private:
     friend bool confirmationOrd (Business *b1);
 
 public:
-Business (string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, string resName);
+Business (std::string **ArrMenu, int rows, int columns, int deliveryNum,float deliveryfee, std::string resName);
 //Setter and Getter Functions
-vector <int> getItemIndex ();
-vector <string> getMenuOptions();
-vector <float> getPricesMenu ();
-string getResName ();
+std::vector <int> getItemIndex ();
+std::vector <std::string> getMenuOptions();
+std::vector <float> getPricesMenu ();
+std::string getResName ();
 //Function to print the Menu
 void PrintMenu ();
 //Function to determine availability of Drivers
-vector <int> DriverAvailable (int a);
+std::vector <int> DriverAvailable (int a);
 //Function to determine if any of the drivers are available
 bool DriverAvailable (bool a);
 //Function to determine whether order is accepted or not. CAN LATER USE FUNCTION OVERRIDING

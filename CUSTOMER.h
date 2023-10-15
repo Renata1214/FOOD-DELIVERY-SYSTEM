@@ -1,24 +1,27 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "BUSINESS.h"
+//#include "BUSINESS.h"
 #include "IdData.h"
-#include "RECEIPT.h"
+//#include "RECEIPT.h"
 #include <iostream>
 #include <cmath>
 #include <string>
 #include <vector>
 #include <typeinfo>
 
+class Business;
+class Receipt;
+
 class Customer: public IdData{
 
     private:
-    vector <string> order;
-    string item;
-    vector <int> quantityVec; 
+    std::vector <std::string> order;
+    std::string item;
+    std::vector <int> quantityVec; 
     int quantity;
     bool confirm;
-    vector <int> indexOrderedItems;
+    std::vector <int> indexOrderedItems;
     //FRIEND CLASSES
     friend class Business;
     friend class Receipt;
@@ -27,8 +30,8 @@ class Customer: public IdData{
     //Constructor
     Customer ();
     //Getter functions
-    vector <string> getOrder ();
-    vector <int> getQuantity ();
+    std::vector <std::string> getOrder ();
+    std::vector <int> getQuantity ();
     bool getCusConfirmation ();
     //Order Food
     void OrderFood ();

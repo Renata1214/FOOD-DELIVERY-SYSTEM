@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cmath>
-#include <string>
+//#include <string>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
