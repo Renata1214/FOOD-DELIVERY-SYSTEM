@@ -95,7 +95,7 @@
 
             if (DriverAvailable(true)==true){
                 int sizevector= DriverAvailable(1).size();
-        //FIND THE DISTANCE BETWEEN THE CUSTOMER AND EACH OF THE ELIVERY WORKERS, AND SAVE THE ONE THAT IS THE SMALLEST ONE. ASSIGN THAT DRIVER TO THE CUSTOMER. 
+        //FIND THE DISTANCE BETWEEN THE DELIVERY WORKERS AND THE RESTAURANT
             
             for (int i=0; i<sizevector; i++){
                 xdriver=DeliveryWorkers[DriverAvailable(1)[i]].getxpos();
