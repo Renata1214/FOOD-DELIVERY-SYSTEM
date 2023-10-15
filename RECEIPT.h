@@ -2,6 +2,9 @@
 #define RECEIPT_H
 
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
 #include "CUSTOMER.h"
 #include "BUSINESS.h"
 

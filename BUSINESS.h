@@ -3,6 +3,10 @@
 
 #include "CUSTOMER.h"
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <typeinfo>
 
 //Class Business
 class Business: public Customer{

@@ -2,6 +2,18 @@
 
 using namespace std;
 
+//Defintiion of functions to get random numbers
+
+        int rand_int(int a, int b)
+        {
+        return rand()%(b-a+1) + a;
+        }
+
+        float rand_float(float a, float b)
+        {
+        return ((float)rand()/RAND_MAX)*(b-a) + a;
+        }
+
 //Constructor
         DeliveryPeople::DeliveryPeople (){
             xcoordinate= rand_float(0,100);

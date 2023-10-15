@@ -5,6 +5,10 @@
 #include "IdData.h"
 #include "RECEIPT.h"
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <typeinfo>
 
 class Customer: public IdData{
 

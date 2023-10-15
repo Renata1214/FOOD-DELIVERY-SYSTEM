@@ -2,6 +2,15 @@
 #define DELIVERYPEOPLE_H
 
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+
+//Random Function configuration
+int rand_int(int a, int b);
+float rand_float(float a, float b);
 
 class DeliveryPeople{
 

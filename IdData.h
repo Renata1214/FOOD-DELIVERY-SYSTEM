@@ -3,6 +3,10 @@
 
 #include "CUSTOMER.h"
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+
 
 class IdData {
 

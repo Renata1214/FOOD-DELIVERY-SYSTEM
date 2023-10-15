@@ -2,6 +2,12 @@
 #define MASTERHEADER_H
 
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <typeinfo>
 #include "DELIVERYPEOPLE.h"
 #include "IdData.h"
 #include "CUSTOMER.h"
