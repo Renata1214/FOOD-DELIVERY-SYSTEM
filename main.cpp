@@ -55,8 +55,12 @@ void OrderingFoodRestaurant (string **ArrMenu, int rows, int columns, int delive
     Business business1 (ArrMenu, rows, columns, deliveryNum, deliveryfee, resName);
     business1.PrintMenu();
     business1.OrderFood();
-    if(business1.DriverAvailable(true)){
-        
+    if(business1.OrderConfirmation()==true){
+
+        business.setCusPosX();
+        business.
+
+
     }
     
 
