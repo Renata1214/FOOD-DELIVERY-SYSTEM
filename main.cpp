@@ -81,6 +81,7 @@ if(business1.OrderConfirmation()==true){
         
        cout<< "Please write the y coordinate of your location with respect to the Restaurant!" << endl;
         cin>>ycoordinatecustomer;
+        cout<< endl<< endl;
         
         business1.setCusPosX(xcoordinatecustomer);
         business1.setCusPosY(ycoordinatecustomer);
@@ -93,6 +94,7 @@ if(business1.OrderConfirmation()==true){
             const Receipt receipt1;
             cout<< endl;
             receipt1.calculateCost (&business1);
+            cout<< endl<< endl;
             business1.AssignDriverToCustomer();
             cout<< endl;
             cout<<"Your order will be delivered soon!!!" << endl;

@@ -44,31 +44,37 @@ using namespace std;
 
 //Print Order
     void Customer::printOrder (Business *b1){
+
+        cout << "\033[32m"; // Set text color to green (32)
         cout << "The recorded order is shown below: " << endl;
 
-            for (int j=0; j<order.size();j++){
-            for (int i=0; i<b1->getMenuOptions().size(); i++){
-                if(order[j]==b1->getMenuOptions()[i]){
-                cout << "Quantity: " << quantityVec[j] << " " << b1->getMenuOptions()[i] << endl;
-                indexOrderedItems.push_back(i);
-                break;
+        for (int j = 0; j < order.size(); j++) {
+            for (int i = 0; i < b1->getMenuOptions().size(); i++) {
+                if (order[j] == b1->getMenuOptions()[i]) {
+                    cout << "Quantity: " << quantityVec[j] << " " << b1->getMenuOptions()[i] << endl;
+                    indexOrderedItems.push_back(i);
+                    break;
                 }
-
-            }}
+            }
+        }
+        cout << "\033[0m"; // Reset to default color
     }
 
 //Confirm Order- OVERRRIDING FUNCTIONS FROM BUSINESS CLASS. virtual
      bool Customer::customerConfirm (Business *b1){
         printOrder(b1);
+        cout<< endl;
         cout << "If the order is correct, please select 1, otherwise select 0"<< endl;
         cin >> confirm;
         return confirm;}
 
 //Get the details of the customer
     void Customer::PrintIDdata () {
-        cout<<"Customer's ID details recorded to process the order can be found below: " << endl;
+        cout << "\033[31m"; // Set text color to red (31)
+        cout << "Customer's ID details recorded to process the order can be found below: " << endl;
+        cout << "\033[0m";
         IdData::PrintIDdata(); 
-        cout << "Note that your personal information will remain confidential "<< endl;
+        cout << "Note that your personal information will remain confidential " << endl;
     }
 
 

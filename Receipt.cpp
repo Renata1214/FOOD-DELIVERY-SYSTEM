@@ -23,7 +23,7 @@ using namespace std;
     TextReceipt += "Total cost: $" + to_string(totalPrice);
 
     b2->Customer::PrintIDdata();
-    cout<< TextReceipt<< endl;
+    cout << "\033[31m" << TextReceipt << "\033[0m" << endl;
 
         string filename = "File.txt";
         ofstream outfile;
