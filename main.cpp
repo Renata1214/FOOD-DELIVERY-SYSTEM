@@ -70,7 +70,9 @@ if(business1.OrderConfirmation()==true){
         float ycoordinatecustomer;
 
         cout<< "Please write your full name!" << endl;
-        cin>> customername;
+        cin.ignore(); // Clear any previous input left in the buffer
+        getline(cin, customername); // Use getline to capture the full name
+        //cin>> customername;
         //Loop to enter the position of the customer and check if it is within the bounds that the drivers can reach
        
         cout<< "Plese write the x coordinate of your location with respect to the Restaurant!" <<endl;

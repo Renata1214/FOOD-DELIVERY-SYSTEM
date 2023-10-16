@@ -1,5 +1,4 @@
 Your receipt is shown below
 Customer's Order:
-2 Enchiladas 40.000000
 2 Chilaquiles 50.000000
-Total cost: $90.000000
+Total cost: $50.000000
