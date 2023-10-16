@@ -12,7 +12,8 @@ using namespace std;
     void Customer::OrderFood (){
         int errorselection=-1;
         int ExtraproductDecision=-1;
-
+    do{
+        errorselection=-1;
     do{
         cout << "From the options shown in the Menu above, which one would you like to order?"<<
         "Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
@@ -32,29 +33,8 @@ using namespace std;
             order.push_back(item);
             quantityVec.push_back(quantity);
             cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
-            cin>> ExtraproductDecision;
-            // do{
-            //     if (ExtraproductDecision!=0){
-            //         errorselection=-1;
-            //         cout <<"Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
-            //         cin >> item;
-            //         cout << "How many would you like to order"<<endl;
-            //         cin>> quantity;
-            //             if (quantity<=0){
-            //                  do{
-            //                      cout<<"That is an invalid order, please try ordering again. Select 1 to return to item selection, and 0 to end the program"<< endl;
-            //                     cin>>errorselection;
-            //                     if(errorselection==0){
-            //                     exit(0);}
-            //                     }while(errorselection!=1);
-            //             else if(errorselection!=1){
-            //                 order.push_back(item);
-            //                 quantityVec.push_back(quantity);
-            //                 cout << "Would you like to order something else? (1 (for yes), 0 (for no))"<< endl;
-            //                 cin>> ExtraproductDecision;
-            //     }
-             //       }
-        }while (ExtraproductDecision!=0&&errorselection!=1);
+            cin>> ExtraproductDecision;}
+            }while (ExtraproductDecision!=0&&errorselection!=1);
 
         if(errorselection!=1){
         cout<< "Your Order has been recorded!!!" << endl;}
