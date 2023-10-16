@@ -2,6 +2,7 @@
 #define MASTERHEADER_H
 
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 #include <string>
 #include <vector>

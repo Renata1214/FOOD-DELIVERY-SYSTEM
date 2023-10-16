@@ -9,7 +9,8 @@ int main (){
 
     int UserSelection;
 
-    cout << setw(10) <<"Welcome to Renata's Ordering Food System!!!"<< endl;
+    cout << "\033[41m\033[1;37m";  // Set background to red (41) and text to white (1;37)
+    cout << setw(40) << " Welcome to Renata's Ordering Food System!!! " << "\033[0m" << endl;
     cout << "Please select 1 if you wish to order Restaurant A, and 2 for Restaurant B" << endl;
     cin>> UserSelection;
 

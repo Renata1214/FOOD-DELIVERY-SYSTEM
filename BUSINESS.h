@@ -4,6 +4,7 @@
 #include "CUSTOMER.h"
 #include "DELIVERYPEOPLE.h"
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 #include <string>
 #include <vector>
@@ -40,12 +41,18 @@ inline std::string getResName (){return nameRestaurant;}
 
 //Function to print the Menu
 inline void PrintMenu (){
-        std::cout<< "Welcome to " << nameRestaurant << "!!" << std::endl<< std::endl << std::endl;
+        std::cout << "\033[44m\033[1;37m"; // Set background to blue (44) and text to bold white (1;37)
+        std::cout << " Welcome to " << nameRestaurant << "!! " << "\033[0m" << std::endl;
+       std::cout << "\033[34m"; // Set text color to blue (34)
         std::cout << "Menu." << std::endl;
-        for (int i=0; i< MenuOptions.size(); i++){
-            std::cout << ItemIndex[i] << "          " << MenuOptions[i] << "          " <<"$" <<PricesMenu[i] << std::endl;
-        }
-        }
+        std::cout << "\033[0m"; // Reset to default color
+
+        for (int i = 0; i < MenuOptions.size(); i++) {
+            std::cout << "\033[34m"; // Set text color to blue (34)
+            std::cout << ItemIndex[i] << std::setw(30) << MenuOptions[i] << std::setw(20) << "$" << PricesMenu[i] << std::endl;
+            std::cout << "\033[0m"; // Reset to default color
+        }}
+
 //Function to determine availability of Drivers
 std::vector <int> DriverAvailable (int a);
 //Function to determine if any of the drivers are available
