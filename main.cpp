@@ -37,12 +37,15 @@ int main (){
         {
         //Definition of the parameters of Restaurant A
         //Array of menu and prices
-        //rows in the menu
-        //columsnin the menu
+        string MenuRestaurant [4][2]={{"Pizza", "20"},{"Pasta", "25"}, {"Beef Burger", "30"}, {"Vegan Option", "35"}};
+        //rows in the menu and //columsnin the menu
         //number of drivers
+        int restaurantDrivers =4;
         //delivery fee
+        float dFee =20;
         //Name of the restaurant
-
+        string NameRes= "Second Kitchen";
+        OrderingFoodRestaurant(MenuRestaurant, 4,2,restaurantDrivers,dFee,NameRes);
         break;
         }
         default:

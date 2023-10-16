@@ -19,6 +19,9 @@ using namespace std;
         TextReceipt += to_string(b2->quantityVec[i]) + " " + b2->MenuOptions[b2->indexOrderedItems[i]] + " " + to_string(b2->quantityVec[i] * b2->PricesMenu[b2->indexOrderedItems[i]]) + "\n";
         totalPrice += b2->quantityVec[i] * b2->PricesMenu[b2->indexOrderedItems[i]];
     }
+    totalPrice+=b2->deliveryPrice;
+    string delivery= "Delivery Fee : $" +to_string(b2->deliveryPrice)+"\n";
+    TextReceipt +=delivery;
 
     TextReceipt += "Total cost: $" + to_string(totalPrice);
 
