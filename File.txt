@@ -1,0 +1,4 @@
+Your receipt is shown below
+Customer's Order:
+1 Enchiladas 20.000000
+Total cost: $20.000000

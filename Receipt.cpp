@@ -9,17 +9,29 @@ using namespace std;
         
 //Print the receipt
     void Receipt::calculateCost (Business *b2) const{ 
-        float totalPrice=0;
+         float totalPrice = 0;
+        string TextReceipt;
 
-        cout<< "Your receipt is shown below " << endl;
-        b2->Customer::PrintIDdata();
-        cout<< "Customer's Order: "<< endl;
-            for(int i=0;i<b2->indexOrderedItems.size();i++){
-               cout<< b2->quantityVec[i] <<"   "<<b2->MenuOptions[b2->indexOrderedItems[i]]<< "  " <<  b2->quantityVec[i]*b2->PricesMenu[b2->indexOrderedItems[i]];
-               totalPrice+=b2->quantityVec[i]*b2->PricesMenu[b2->indexOrderedItems[i]];
-            }
-            cout<< endl;
-            cout<<"Your total would be of $" << totalPrice << endl;
-            cout<<endl;
+    TextReceipt += "Your receipt is shown below\n";
+    TextReceipt += "Customer's Order:\n";
+
+    for (int i = 0; i < b2->indexOrderedItems.size(); i++) {
+        TextReceipt += to_string(b2->quantityVec[i]) + " " + b2->MenuOptions[b2->indexOrderedItems[i]] + " " + to_string(b2->quantityVec[i] * b2->PricesMenu[b2->indexOrderedItems[i]]) + "\n";
+        totalPrice += b2->quantityVec[i] * b2->PricesMenu[b2->indexOrderedItems[i]];
     }
+
+    TextReceipt += "Total cost: $" + to_string(totalPrice);
+
+    b2->Customer::PrintIDdata();
+    cout<< TextReceipt<< endl;
+
+        string filename = "File.txt";
+        ofstream outfile;
+        outfile.open(filename);
+        outfile << TextReceipt << endl;
+        outfile.close();
+
+    // Now, TextReceipt contains the receipt information
+}
+
     
