@@ -1,6 +1,4 @@
 Your receipt is shown below
 Customer's Order:
-2 Sopitos 60.000000
-1 Chilaquiles 25.000000
 Delivery Fee : $20.000000
-Total cost: $105.000000
+Total cost: $20.000000

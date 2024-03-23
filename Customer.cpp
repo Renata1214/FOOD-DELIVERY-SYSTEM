@@ -16,7 +16,7 @@ using namespace std;
         errorselection=-1;
     do{
         cout << "From the options shown in the Menu above, which one would you like to order?"<<
-        "Please write exactly as shown or write the number shown on the left column corresponding to the item you would like to order" << endl;
+        "Please write exactly as shown on the left column corresponding to the item you would like to order" << endl;
         cin >> item;
         cout << "How many would you like to order"<< endl;
         cin>> quantity;
@@ -47,7 +47,6 @@ using namespace std;
 
         cout << "\033[32m"; // Set text color to green (32)
         cout << "The recorded order is shown below: " << endl;
-
         for (int j = 0; j < order.size(); j++) {
             for (int i = 0; i < b1->getMenuOptions().size(); i++) {
                 if (order[j] == b1->getMenuOptions()[i]) {
